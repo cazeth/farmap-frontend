@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import CountChart from './CountChart.vue';
+import CountChart from './DistributionChart.vue';
 
 
 </script>
