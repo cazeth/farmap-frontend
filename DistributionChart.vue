@@ -8,22 +8,16 @@
 
 import { Bar } from 'vue-chartjs'
 import { ref } from 'vue';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, scales } from 'chart.js';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 type DataItem = [string, [number, number, number]];
-interface ChartData {
-	labels: string[];
-	datasets: [{
-		labels: string;
-		data: number[];
-	}]
-}
 
-const { data, pending, error } = await useFetch<DataItem[]>('http://localhost:3000/weekly_spam_scores', {
-	default: () => []
+
+const { data } = await useFetch<DataItem[]>('/api/weekly_spam_scores', {
 })
+
 
 let spam: number[] = [];
 let maybe: number[] = [];
@@ -31,7 +25,7 @@ let ham: number[] = [];
 
 let labels: string[] = [];
 
-data.value.forEach(item => {
+data.value?.forEach(item => {
 	labels.push(item[0]);
 	spam.push(item[1][0]);
 	maybe.push(item[1][1]);
