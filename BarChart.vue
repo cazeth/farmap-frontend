@@ -56,9 +56,3 @@ const chartOptions = ref({
 });
 
 </script>
-
-<style>
-.chart-div {
-	max-width: 700px;
-}
-</style>
